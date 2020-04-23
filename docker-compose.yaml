@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+  node:
+    container_name: "project-node"
+    build:
+      context: docker/node/14
+      dockerfile: Dockerfile
+    volumes:
+      - "./project:/var/project"
+      - "./docker/.volumes/npm:/root/.npm"
+    working_dir: /var/project
+
+  dynamodb:
+    container_name: "project-dynamodb"
+    image: amazon/dynamodb-local
+    ports:
+      - "8000:8000"
+
+  smtp:
+    container_name: "project-smtp"
+    image: "schickling/mailcatcher:latest"
+    ports:
+      - "1080:1080"
+
+  hadolint:
+    container_name: "project-hadolint"
+    image: "hadolint/hadolint:latest-debian"
+    volumes:
+      - "./:/var/project"
+    working_dir: /var/project
+    entrypoint: ["/bin/hadolint"]

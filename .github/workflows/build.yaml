@@ -1,0 +1,22 @@
+name: "BUILD IMAGES"
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  build_images:
+    needs: run_tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Build a new container
+        run: |
+          ./docker/bin/build-dockerfiles.sh
+          echo ${{ secrets.PACKAGE_TOKEN }} | docker login docker.pkg.github.com -u ${{ secrets.USER_NAME }} --password-stdin
+          docker build --tag docker.pkg.github.com/tommyheavenly7/node-latest/node:14 ./docker/node/14
+          docker push docker.pkg.github.com/tommyheavenly7/node-latest/node:14
