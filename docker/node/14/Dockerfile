@@ -27,6 +27,9 @@ RUN apk --no-cache add \
     "ssmtp>=2.64-r14" \
     "zip>=3.0-r7" \
     "zlib-dev>=1.2.11-r3"
-RUN npm install -g \
-    typescript
 
+RUN npm install -g \
+    jest \
+    nodemon \
+    pm2 \
+    typescript

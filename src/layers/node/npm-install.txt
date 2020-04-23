@@ -1,3 +1,5 @@
 RUN npm install -g \
+    jest \
+    nodemon \
+    pm2 \
     typescript
-
