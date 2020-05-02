@@ -30,6 +30,8 @@ RUN apk --no-cache add \
 
 RUN npm install -g \
     jest \
+    node-gyp \
     nodemon \
     pm2 \
     typescript
+
