@@ -1,6 +1,7 @@
 # Node Latest
 
-A Node.js Docker image based on the latest version of the official images
+This repository provides a node.js docker image based on the official latest version. 
+It will be frequently updated and often unstable.
 
 ## Compile Dcoekrfile
 
